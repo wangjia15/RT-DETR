@@ -1,0 +1,37 @@
+task: detection
+
+num_classes: 2
+remap_mscoco_category: False
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    #############################################
+    img_folder: /kaggle/input/wider-coco/images/train/
+    ann_file: /kaggle/input/wider-coco/annotations/train.json
+    #############################################
+    transforms:
+      type: Compose
+      ops: ~
+  shuffle: True
+  batch_size: 8
+  num_workers: 4
+  drop_last: True
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    #############################################
+    img_folder: /kaggle/input/wider-coco/images/val/
+    ann_file: /kaggle/input/wider-coco/annotations/val.json
+    #############################################
+    transforms:
+      type: Compose
+      ops: ~
+
+  shuffle: False
+  batch_size: 4
+  num_workers: 4
+  drop_last: False
